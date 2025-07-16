@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>વ્યવસાય: એક દ્રષ્ટિ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Baloo+Bhai+2:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #ecf0f1;
+            --text-color: #34495e;
+            --card-bg-color: #ffffff;
+            --font-en: 'Roboto', sans-serif;
+            --font-gu: 'Baloo Bhai 2', cursive;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: var(--font-gu), var(--font-en); /* Gujarati font first */
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .lang-en body {
+            font-family: var(--font-en), var(--font-gu); /* English font first */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.1em;
+            color: var(--secondary-color);
+            font-weight: 300;
+        }
+
+        .language-switcher {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: var(--card-bg-color);
+            padding: 5px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .language-switcher button {
+            border: none;
+            background: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 15px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .language-switcher button.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .card {
+            background-color: var(--card-bg-color);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid;
+        }
+
+        .card h2 {
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card h2 .icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+
+        .card-purpose { border-color: #27ae60; }
+        .card-purpose h2 { color: #27ae60; }
+
+        .card-ways { border-color: #3498db; }
+        .card-ways h2 { color: #3498db; }
+
+        .card-guidelines { border-color: #f39c12; }
+        .card-guidelines h2 { color: #f39c12; }
+
+        .card-wisdom { border-color: #8e44ad; }
+        .card-wisdom h2 { color: #8e44ad; }
+
+        .card-conclusion { border-color: #e74c3c; }
+        .card-conclusion h2 { color: #e74c3c; }
+
+        .ways-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .way-item {
+            background-color: #f8f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border-bottom: 3px solid #bdc3c7;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .way-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .way-item .icon {
+            font-size: 2.5em;
+            color: var(--secondary-color);
+        }
+
+        .way-item h3 {
+            margin: 10px 0 5px 0;
+            font-size: 1.2em;
+        }
+
+        .way-item p {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin: 0;
+        }
+        
+        ul.guidelines-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul.guidelines-list li {
+            padding: 15px 0;
+            border-bottom: 1px dashed #dddddd;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        ul.guidelines-list li:last-child {
+            border-bottom: none;
+        }
+
+        .guideline-icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+            color: var(--accent-color);
+            padding-top: 5px;
+        }
+
+        .guideline-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            background-color: var(--primary-color);
+            color: #ecf0f1;
+            font-size: 0.9em;
+        }
+        
+        b {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="language-switcher">
+        <button id="btn-gu" class="active" onclick="changeLanguage('gu')">ગુજરાતી</button>
+        <button id="btn-en" onclick="changeLanguage('en')">English</button>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1 id="main-title">વ્યવસાય: એક દ્રષ્ટિ</h1>
+            <p id="main-subtitle">ધન કમાવવાના શુદ્ધ માર્ગો અને નૈતિક સિદ્ધાંતો</p>
+        </header>
+
+        <main>
+            <section class="card card-purpose">
+                <h2 id="purpose-title"><span class="icon">🎯</span>શુદ્ધ કમાણીનો હેતુ</span></h2>
+                <p id="purpose-text">
+                    શુદ્ધ કમાણી પાછળનો હેતુ પાપથી બચવાનો, આર્થિક સમસ્યાઓમાં ન ફસાવાનો અને ધર્મ કર્તવ્યનું પાલન કરવાનો છે. શુદ્ધ ધનથી શુદ્ધ આહાર, શુદ્ધ આહારથી શુદ્ધ વિચારો અને શુદ્ધ વિચારોથી ધર્મ માટે યોગ્યતા પ્રાપ્ત થાય છે, જેનાથી ધર્મનું શ્રેષ્ઠ ફળ મળે છે.
+                </p>
+            </section>
+
+            <section class="card card-ways">
+                <h2 id="ways-title"><span class="icon">🛣️</span>કમાણીના ૭ રસ્તા</span></h2>
+                <div class="ways-grid">
+                    <div class="way-item">
+                        <div class="icon">💼</div>
+                        <h3 id="way1-title">બિઝનેસ</h3>
+                        <p id="way1-desc">વેપારીઓ દ્વારા કરાતો વ્યવસાય</p>
+                    </div>
+                    <div class="way-item">
+                        <div class="icon">🎓</div>
+                        <h3 id="way2-title">જ્ઞાન</h3>
+                        <p id="way2-desc">ડોક્ટર, વકીલ, એકાઉન્ટન્ટ વગેરે</p>
+                    </div>
+                    <div class="way-item">
+                        <div class="icon">🌾</div>
+                        <h3 id="way3-title">ખેતી</h3>
+                        <p id="way3-desc">ખેડૂતો દ્વારા કરાતી કૃષિ</p>
+                    </div>
+                    <div class="way-item">
+                        <div class="icon">🐄</div>
+                        <h3 id="way4-title">પશુપાલન</h3>
+                        <p id="way4-desc">ગોવાળો દ્વારા કરાતું કાર્ય</p>
+                    </div>
+                    <div class="way-item">
+                        <div class="icon">🎨</div>
+                        <h3 id="way5-title">શિલ્પ</h3>
+                        <p id="way5-desc">કારીગરોનું કાર્ય (સુથાર, લુહાર)</p>
+                    </div>
+                    <div class="way-item">
+                        <div class="icon">👨‍💼</div>
+                        <h3 id="way6-title">નોકરી</h3>
+                        <p id="way6-desc">બીજા માટે સેવા કે જોબ કરવી</p>
+                    </div>
+                    <div class="way-item">
+                        <div class="icon">🙏</div>
+                        <h3 id="way7-title">ભિક્ષા</h3>
+                        <p id="way7-desc">સંયમી મહાત્માઓ માટે ઉચિત</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="card card-guidelines">
+                <h2 id="guidelines-title"><span class="icon">📜</span>નૈતિક માર્ગદર્શન</span></h2>
+                <ul class="guidelines-list">
+                    <li>
+                        <div class="guideline-icon">🚫</div>
+                        <div>
+                            <span class="guideline-title" id="g1-title">બિઝનેસમાં વિવેક</span>
+                            <span id="g1-desc">એવો વેપાર ન કરવો જેમાં પંચેન્દ્રિય જીવોની હિંસા થતી હોય. ફેક્ટરી, કન્સ્ટ્રક્શન, ટ્રાન્સપોર્ટ અને ખાવા-પીવાની વસ્તુઓના વેપારથી દૂર રહેવું જોઈએ, કારણ કે તેમાં સૂક્ષ્મ અને સ્થૂળ જીવોની ભયંકર હિંસા થાય છે.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="guideline-icon">💡</div>
+                        <div>
+                            <span class="guideline-title" id="g2-title">જ્ઞાનનો સદુપયોગ</span>
+                            <span id="g2-desc">ડોક્ટર કે વકીલ જેવા વ્યવસાયમાં બીજાનું ખરાબ ઈચ્છવાની ભાવના આવી શકે છે. જોકે, ગરીબોની સેવા અને સાચો ભાવ રાખીને પુણ્ય કમાઈ શકાય છે. હિંસક ધંધાનું એકાઉન્ટિંગ જેવા કાર્યોથી પણ પાપ લાગે છે.</span>
+                        </div>
+                    </li>
+                    <li>
+                         <div class="guideline-icon">❤️</div>
+                        <div>
+                            <span class="guideline-title" id="g3-title">ખેતી અને પશુપાલન</span>
+                            <span id="g3-desc">આ બંને વિકલ્પો વિવેકી માણસ માટે ઉચિત નથી. જો કરવા પડે તો દયાભાવ ખાસ રાખવો જોઈએ.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="guideline-icon">🔗</div>
+                        <div>
+                            <span class="guideline-title" id="g4-title">નોકરીની મર્યાદા</span>
+                            <span id="g4-desc">નોકરી એટલે પરાધીનતા. જેલર કે પોલીસ જેવી નિષ્ઠુર બનાવતી નોકરીઓ ન કરવી. મલ્ટીનેશનલ કંપનીઓની શોષણયુક્ત જોબથી આરોગ્ય અને જીવન બરબાદ થાય છે. સ્વતંત્રતાનું મૂલ્ય વધુ છે.</span>
+                        </div>
+                    </li>
+                     <li>
+                        <div class="guideline-icon">🤲</div>
+                        <div>
+                            <span class="guideline-title" id="g5-title">ભિક્ષાની યોગ્યતા</span>
+                            <span id="g5-desc">ભિક્ષા ફક્ત સંસારનો ત્યાગ કરનાર સંયમીઓ માટે જ છે. ગૃહસ્થ માટે ભિક્ષા માંગવી એ સ્વમાન ગુમાવવા બરાબર છે. કોઈની પાસે હાથ લંબાવવાને બદલે પુરુષાર્થ કરવો.</span>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="card card-wisdom">
+                 <h2 id="wisdom-title"><span class="icon">✨</span>આર્થિક શાણપણ</span></h2>
+                <ul class="guidelines-list">
+                     <li>
+                        <div class="guideline-icon">🤝</div>
+                        <div>
+                            <span class="guideline-title" id="w1-title">કોની સાથે વેપાર કરવો?</span>
+                            <span id="w1-desc">સામાન્ય સજ્જન લોકો સાથે વેપાર કરવો. રાજા, સરકારી અધિકારીઓ કે હથિયારધારી લોકો સાથે વેપાર ટાળવો.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="guideline-icon">💸</div>
+                        <div>
+                            <span class="guideline-title" id="w2-title">ઉધાર અને વ્યાજ</span>
+                            <span id="w2-desc">ક્યારેય ઉધાર પર વેપાર ન કરવો, કારણ કે તે ચિંતા અને દુર્ધ્યાનનું કારણ બને છે. અવિશ્વસનીય અને માથાભારે લોકોને ઉધાર આપવાથી મૂડી પણ ગુમાવવી પડે છે.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="guideline-icon">🧘‍♂️</div>
+                        <div>
+                            <span class="guideline-title" id="w3-title">સુખનું મૂળ</span>
+                            <span id="w3-desc">સુખનું મૂળ <b>સંતોષ</b> છે, અને ધનનું મૂળ <b>પ્રામાણિકતા અને સંયમ</b> છે. લોભી માણસ શેરબજાર અને સટ્ટામાં સુખ-શાંતિ અને પૈસા બંને ગુમાવે છે.</span>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="card card-conclusion">
+                <h2 id="conclusion-title"><span class="icon">📖</span>વધુ સમજણ માટે</span></h2>
+                <p id="conclusion-text">
+                    કમાણીના વિષયમાં વધુ ઊંડાણપૂર્વક સમજવા માટે, 'વ્યવહારશુદ્ધિપ્રકાશ' ગ્રંથનો અભ્યાસ ગુરુ ભગવંત પાસે કરવો સૂચવવામાં આવે છે.
+                </p>
+            </section>
+        </main>
+
+        <footer>
+            <p>મનીષ વી. શાહ: વોટ્સએપ: 94299 26447: (વડોદરા)</p>
+        </footer>
+    </div>
+
+    <script>
+        const content = {
+            "main-title": {
+                gu: "વ્યવસાય: એક દ્રષ્ટિ",
+                en: "Profession: A Perspective"
+            },
+            "main-subtitle": {
+                gu: "ધન કમાવવાના શુદ્ધ માર્ગો અને નૈતિક સિદ્ધાંતો",
+                en: "Pure Methods and Ethical Principles of Earning Wealth"
+            },
+            "purpose-title": {
+                gu: `<span class="icon">🎯</span>શુદ્ધ કમાણીનો હેતુ`,
+                en: `<span class="icon">🎯</span>The Purpose of Righteous Earning`
+            },
+            "purpose-text": {
+                gu: "શુદ્ધ કમાણી પાછળનો હેતુ પાપથી બચવાનો, આર્થિક સમસ્યાઓમાં ન ફસાવાનો અને ધર્મ કર્તવ્યનું પાલન કરવાનો છે. શુદ્ધ ધનથી શુદ્ધ આહાર, શુદ્ધ આહારથી શુદ્ધ વિચારો અને શુદ્ધ વિચારોથી ધર્મ માટે યોગ્યતા પ્રાપ્ત થાય છે, જેનાથી ધર્મનું શ્રેષ્ઠ ફળ મળે છે.",
+                en: "The purpose behind righteous earning is to avoid sin, not get trapped in financial problems, and to follow one's religious duties. Pure wealth leads to a pure diet, a pure diet leads to pure thoughts, and pure thoughts make one qualified for dharma, yielding the highest fruit."
+            },
+            "ways-title": {
+                gu: `<span class="icon">🛣️</span>કમાણીના ૭ રસ્તા`,
+                en: `<span class="icon">🛣️</span>The 7 Ways to Earn`
+            },
+            "way1-title": { gu: "બિઝનેસ", en: "Business" },
+            "way1-desc": { gu: "વેપારીઓ દ્વારા કરાતો વ્યવસાય", en: "Commerce done by businessmen" },
+            "way2-title": { gu: "જ્ઞાન", en: "Knowledge" },
+            "way2-desc": { gu: "ડોક્ટર, વકીલ, એકાઉન્ટન્ટ વગેરે", en: "e.g., Doctors, Lawyers, Accountants" },
+            "way3-title": { gu: "ખેતી", en: "Agriculture" },
+            "way3-desc": { gu: "Farming done by farmers", en: "Farming done by farmers" },
+            "way4-title": { gu: "પશુપાલન", en: "Animal Husbandry" },
+            "way4-desc": { gu: "ગોવાળો દ્વારા કરાતું કાર્ય", en: "Work done by herdsmen" },
+            "way5-title": { gu: "શિલ્પ", en: "Craftsmanship" },
+            "way5-desc": { gu: "કારીગરોનું કાર્ય (સુથાર, લુહાર)", en: "Work of artisans (carpenter, smith)" },
+            "way6-title": { gu: "નોકરી", en: "Job / Service" },
+            "way6-desc": { gu: "બીજા માટે સેવા કે જોબ કરવી", en: "Service or job for others" },
+            "way7-title": { gu: "ભિક્ષા", en: "Begging" },
+            "way7-desc": { gu: "સંયમી મહાત્માઓ માટે ઉચિત", en: "Appropriate for renunciate saints" },
+            "guidelines-title": {
+                gu: `<span class="icon">📜</span>નૈતિક માર્ગદર્શન`,
+                en: `<span class="icon">📜</span>Ethical Guidance`
+            },
+            "g1-title": { gu: "બિઝનેસમાં વિવેક", en: "Discretion in Business" },
+            "g1-desc": { 
+                gu: "એવો વેપાર ન કરવો જેમાં પંચેન્દ્રિય જીવોની હિંસા થતી હોય. ફેક્ટરી, કન્સ્ટ્રક્શન, ટ્રાન્સપોર્ટ અને ખાવા-પીવાની વસ્તુઓના વેપારથી દૂર રહેવું જોઈએ, કારણ કે તેમાં સૂક્ષ્મ અને સ્થૂળ જીવોની ભયંકર હિંસા થાય છે.",
+                en: "Avoid business involving violence towards five-sensed beings. One should stay away from businesses like factories, construction, transport, and food items, as they involve immense violence towards subtle and gross beings."
+            },
+            "g2-title": { gu: "જ્ઞાનનો સદુપયોગ", en: "Wise Use of Knowledge" },
+            "g2-desc": { 
+                gu: "ડોક્ટર કે વકીલ જેવા વ્યવસાયમાં બીજાનું ખરાબ ઈચ્છવાની ભાવના આવી શકે છે. જોકે, ગરીબોની સેવા અને સાચો ભાવ રાખીને પુણ્ય કમાઈ શકાય છે. હિંસક ધંધાનું એકાઉન્ટિંગ જેવા કાર્યોથી પણ પાપ લાગે છે.",
+                en: "In professions like a doctor or a lawyer, one might develop ill will towards others. However, one can earn merit by serving the poor with a pure heart. Even tasks like accounting for violent businesses incur sin."
+            },
+            "g3-title": { gu: "ખેતી અને પશુપાલન", en: "Agriculture & Animal Husbandry" },
+            "g3-desc": { 
+                gu: "આ બંને વિકલ્પો વિવેકી માણસ માટે ઉચિત નથી. જો કરવા પડે તો દયાભાવ ખાસ રાખવો જોઈએ.",
+                en: "These two options are not suitable for a discerning person. If one must do them, it should be done with great compassion."
+            },
+            "g4-title": { gu: "નોકરીની મર્યાદા", en: "Limitations of a Job" },
+            "g4-desc": { 
+                gu: "નોકરી એટલે પરાધીનતા. જેલર કે પોલીસ જેવી નિષ્ઠુર બનાવતી નોકરીઓ ન કરવી. મલ્ટીનેશનલ કંપનીઓની શોષણયુક્ત જોબથી આરોગ્ય અને જીવન બરબાદ થાય છે. સ્વતંત્રતાનું મૂલ્ય વધુ છે.",
+                en: "A job means dependency. Avoid jobs like a jailer or police officer that make you cruel. Exploitative jobs in multinational companies ruin health and life. The value of freedom is greater."
+            },
+             "g5-title": { gu: "ભિક્ષાની યોગ્યતા", en: "Propriety of Begging" },
+            "g5-desc": { 
+                gu: "ભિક્ષા ફક્ત સંસારનો ત્યાગ કરનાર સંયમીઓ માટે જ છે. ગૃહસ્થ માટે ભિક્ષા માંગવી એ સ્વમાન ગુમાવવા બરાબર છે. કોઈની પાસે હાથ લંબાવવાને બદલે પુરુષાર્થ કરવો.",
+                en: "Begging is only for renunciates who have left the worldly life. For a householder, to beg is to lose one's self-respect. One should strive instead of extending a hand to others."
+            },
+            "wisdom-title": {
+                gu: `<span class="icon">✨</span>આર્થિક શાણપણ`,
+                en: `<span class="icon">✨</span>Financial Wisdom`
+            },
+            "w1-title": { gu: "કોની સાથે વેપાર કરવો?", en: "With Whom to Do Business?" },
+            "w1-desc": { 
+                gu: "સામાન્ય સજ્જન લોકો સાથે વેપાર કરવો. રાજા, સરકારી અધિકારીઓ કે હથિયારધારી લોકો સાથે વેપાર ટાળવો.",
+                en: "Do business with ordinary, virtuous people. Avoid business with kings, government officials, or armed individuals."
+            },
+            "w2-title": { gu: "ઉધાર અને વ્યાજ", en: "Credit and Interest" },
+            "w2-desc": { 
+                gu: "ક્યારેય ઉધાર પર વેપાર ન કરવો, કારણ કે તે ચિંતા અને દુર્ધ્યાનનું કારણ બને છે. અવિશ્વસનીય અને માથાભારે લોકોને ઉધાર આપવાથી મૂડી પણ ગુમાવવી પડે છે.",
+                en: "Never do business on credit, as it causes anxiety and distress. Lending to unreliable and troublesome people can lead to the loss of capital itself."
+            },
+            "w3-title": { gu: "સુખનું મૂળ", en: "The Root of Happiness" },
+            "w3-desc": { 
+                gu: "સુખનું મૂળ <b>સંતોષ</b> છે, અને ધનનું મૂળ <b>પ્રામાણિકતા અને સંયમ</b> છે. લોભી માણસ શેરબજાર અને સટ્ટામાં સુખ-શાંતિ અને પૈસા બંને ગુમાવે છે.",
+                en: "The root of happiness is <b>contentment</b>, and the root of wealth is <b>honesty and restraint</b>. A greedy person loses both peace and money in stock markets and gambling."
+            },
+             "conclusion-title": {
+                gu: `<span class="icon">📖</span>વધુ સમજણ માટે`,
+                en: `<span class="icon">📖</span>For Further Understanding`
+            },
+            "conclusion-text": {
+                gu: "કમાણીના વિષયમાં વધુ ઊંડાણપૂર્વક સમજવા માટે, 'વ્યવહારશુદ્ધિપ્રકાશ' ગ્રંથનો અભ્યાસ ગુરુ ભગવંત પાસે કરવો સૂચવવામાં આવે છે.",
+                en: "To understand the subject of earning in greater depth, it is suggested to study the scripture 'Vyavaharshuddhiprakash' under the guidance of a Guru."
+            },
+        };
+
+        const btnGu = document.getElementById('btn-gu');
+        const btnEn = document.getElementById('btn-en');
+
+        function changeLanguage(lang) {
+            // Set font on body
+            if (lang === 'en') {
+                document.documentElement.lang = 'en';
+                document.body.classList.add('lang-en');
+                btnEn.classList.add('active');
+                btnGu.classList.remove('active');
+            } else {
+                document.documentElement.lang = 'gu';
+                document.body.classList.remove('lang-en');
+                btnGu.classList.add('active');
+                btnEn.classList.remove('active');
+            }
+
+            // Change text content
+            for (const id in content) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.innerHTML = content[id][lang];
+                }
+            }
+        }
+        
+        // Set initial language
+        window.onload = () => changeLanguage('gu');
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>શુદ્ધ કમાણી, શુદ્ધ જીવન</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Baloo+Bhai+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Applying Gujarati font */
+        .font-gu {
+            font-family: 'Baloo Bhai 2', cursive;
+        }
+        /* Styling for active language button */
+        .lang-btn.active {
+            background-color: #4f46e5; /* indigo-600 */
+            color: white;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-700">
+
+    <!-- Language Switcher -->
+    <div class="fixed top-4 right-4 z-50 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-gray-200">
+        <div class="flex p-1 space-x-1">
+            <button id="btn-gu" class="lang-btn px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300">ગુજરાતી</button>
+            <button id="btn-en" class="lang-btn px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300">English</button>
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header Section -->
+        <header class="text-center py-16 md:py-24">
+            <h1 id="header-title" class="font-gu text-4xl md:text-6xl font-bold text-indigo-600 tracking-tight">શુદ્ધ કમાણી, શુદ્ધ જીવન</h1>
+            <p id="header-subtitle" class="mt-4 text-lg md:text-xl text-gray-500 max-w-2xl mx-auto">જૈન ધર્મ અનુસાર નૈતિક વ્યવસાય અને પ્રામાણિક જીવનશૈલીના સિદ્ધાંતોનું અન્વેષણ.</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="space-y-16 md:space-y-24">
+
+            <!-- Video/Podcast Section -->
+            <section id="video-section">
+                <h2 id="video-title" class="font-gu text-3xl font-bold text-center text-gray-800">વિડિઓઝ અને પોડકાસ્ટ</h2>
+                <p id="video-subtitle" class="text-center mt-2 text-gray-500">આ વિષય પર વધુ ઊંડાણપૂર્વક જાણકારી મેળવો.</p>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Video 1 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                        <a href="https://youtu.be/aDeXYBwQUes" target="_blank" class="block">
+                            <img src="https://img.youtube.com/vi/aDeXYBwQUes/hqdefault.jpg" alt="Podcast Thumbnail" class="rounded-lg w-full object-cover aspect-video" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=Video+Not+Found';">
+                            <h3 id="video1-title" class="font-gu text-xl font-bold text-gray-900 mt-4">પોડકાસ્ટ: શુદ્ધ કમાણી, શુદ્ધ જીવન</h3>
+                            <p id="video1-desc" class="mt-2 text-gray-600 text-sm">નૈતિક વ્યવસાયના સિદ્ધાંતો પર એક ઊંડાણપૂર્વકની ચર્ચા.</p>
+                            <div class="flex items-center text-indigo-600 font-semibold mt-4 text-sm">
+                                <span id="video-watch-btn">Watch Now</span>
+                                <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Video 2 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                        <a href="https://youtu.be/nf02efihT3M" target="_blank" class="block">
+                            <img src="https://img.youtube.com/vi/nf02efihT3M/hqdefault.jpg" alt="Jain Dharma Business Thumbnail" class="rounded-lg w-full object-cover aspect-video" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=Video+Not+Found';">
+                            <h3 id="video2-title" class="font-gu text-xl font-bold text-gray-900 mt-4">જૈન ધર્મ અનુસાર વ્યવસાય</h3>
+                            <p id="video2-desc" class="mt-2 text-gray-600 text-sm">શું કમાણીના બધા રસ્તા યોગ્ય છે? આ પ્રશ્ન પર એક માર્ગદર્શક વિશ્લેષણ.</p>
+                             <div class="flex items-center text-indigo-600 font-semibold mt-4 text-sm">
+                                <span id="video-watch-btn2">Watch Now</span>
+                                <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Core Principles Section from PDF -->
+            <section id="principles-section">
+                 <h2 id="principles-title" class="font-gu text-3xl font-bold text-center text-gray-800">નૈતિક કમાણીના મુખ્ય સિદ્ધાંતો</h2>
+                 <p id="principles-subtitle" class="text-center mt-2 text-gray-500">ભગવાને બતાવેલી શુદ્ધ અર્નિંગ સિસ્ટમની સમજ.</p>
+                 <div class="mt-12 space-y-8">
+                     <!-- Purpose -->
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-green-500">
+                        <h3 id="purpose-title" class="font-gu text-xl font-bold text-green-700 flex items-center"><i data-feather="target" class="w-6 h-6 mr-3"></i>શુદ્ધ કમાણીનો હેતુ</h3>
+                        <p id="purpose-text" class="mt-3 text-gray-600">શુદ્ધ કમાણીનો હેતુ પાપથી બચવું, આર્થિક સમસ્યાઓમાં ન ફસાવું અને ધર્મ કર્તવ્યનું પાલન કરવું છે. શુદ્ધ ધનથી શુદ્ધ આહાર, શુદ્ધ આહારથી શુદ્ધ વિચારો અને શુદ્ધ વિચારોથી ધર્મ માટે યોગ્યતા પ્રાપ્ત થાય છે.</p>
+                    </div>
+                    <!-- 7 Ways to Earn -->
+                     <div class="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-blue-500">
+                        <h3 id="ways-title" class="font-gu text-xl font-bold text-blue-700 flex items-center"><i data-feather="git-branch" class="w-6 h-6 mr-3"></i>કમાણીના ૭ રસ્તા</h3>
+                        <div id="ways-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mt-4 text-center">
+                            <!-- Items will be injected by JS -->
+                        </div>
+                    </div>
+                 </div>
+            </section>
+
+            <!-- Infographics & Quiz Section -->
+            <section id="interactive-section">
+                <h2 id="interactive-title" class="font-gu text-3xl font-bold text-center text-gray-800">જ્ઞાનને વ્યવહારમાં મૂકો</h2>
+                <p id="interactive-subtitle" class="text-center mt-2 text-gray-500">વિઝ્યુઅલ પ્રસ્તુતિઓ અને ક્વિઝ દ્વારા તમારી સમજને વધુ મજબૂત બનાવો.</p>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Infographics -->
+                    <a href="./infographics.html" target="_blank" class="block bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 text-center">
+                        <div class="flex justify-center items-center h-24 w-24 rounded-full bg-purple-100 mx-auto">
+                            <i data-feather="bar-chart-2" class="w-12 h-12 text-purple-600"></i>
+                        </div>
+                        <h3 id="infographics-title" class="font-gu text-2xl font-bold text-gray-900 mt-6">ઇન્ફોગ્રાફિક્સ</h3>
+                        <p id="infographics-desc" class="mt-2 text-gray-600">મુખ્ય સિદ્ધાંતોની એક સુંદર અને દ્રશ્ય પ્રસ્તુતિ.</p>
+                        <div class="inline-flex items-center text-purple-600 font-semibold mt-4 text-sm">
+                           <span id="view-now-btn">View Now</span>
+                           <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </div>
+                    </a>
+                    <!-- Quiz -->
+                    <a href="./quiz.html" target="_blank" class="block bg-white p-8 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 text-center">
+                         <div class="flex justify-center items-center h-24 w-24 rounded-full bg-yellow-100 mx-auto">
+                            <i data-feather="help-circle" class="w-12 h-12 text-yellow-600"></i>
+                        </div>
+                        <h3 id="quiz-title" class="font-gu text-2xl font-bold text-gray-900 mt-6">જ્ઞાન ચકાસણી ક્વિઝ</h3>
+                        <p id="quiz-desc" class="mt-2 text-gray-600">આ વિષય પર તમારી સમજને ચકાસો અને જ્ઞાનને પાકું કરો.</p>
+                        <div class="inline-flex items-center text-yellow-600 font-semibold mt-4 text-sm">
+                           <span id="start-quiz-btn">Start Quiz</span>
+                           <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center py-12 mt-16 md:mt-24 border-t border-gray-200">
+            <p id="footer-name" class="font-gu font-semibold text-lg text-gray-800">મનીષ વી. શાહ</p>
+            <p id="footer-contact" class="text-gray-500 mt-1">વોટ્સએપ: 94299 26447 (વડોદરા)</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Content object for language switching
+        const content = {
+            'gu': {
+                'header-title': 'શુદ્ધ કમાણી, શુદ્ધ જીવન',
+                'header-subtitle': 'જૈન ધર્મ અનુસાર નૈતિક વ્યવસાય અને પ્રામાણિક જીવનશૈલીના સિદ્ધાંતોનું અન્વેષણ.',
+                'video-title': 'વિડિઓઝ અને પોડકાસ્ટ',
+                'video-subtitle': 'આ વિષય પર વધુ ઊંડાણપૂર્વક જાણકારી મેળવો.',
+                'video1-title': 'પોડકાસ્ટ: શુદ્ધ કમાણી, શુદ્ધ જીવન',
+                'video1-desc': 'નૈતિક વ્યવસાયના સિદ્ધાંતો પર એક ઊંડાણપૂર્વકની ચર્ચા.',
+                'video-watch-btn': 'હમણાં જુઓ',
+                'video2-title': 'જૈન ધર્મ અનુસાર વ્યવસાય',
+                'video2-desc': 'શું કમાણીના બધા રસ્તા યોગ્ય છે? આ પ્રશ્ન પર એક માર્ગદર્શક વિશ્લેષણ.',
+                'video-watch-btn2': 'હમણાં જુઓ',
+                'principles-title': 'નૈતિક કમાણીના મુખ્ય સિદ્ધાંતો',
+                'principles-subtitle': 'ભગવાને બતાવેલી શુદ્ધ અર્નિંગ સિસ્ટમની સમજ.',
+                'purpose-title': '<i data-feather="target" class="w-6 h-6 mr-3"></i>શુદ્ધ કમાણીનો હેતુ',
+                'purpose-text': 'શુદ્ધ કમાણીનો હેતુ પાપથી બચવું, આર્થિક સમસ્યાઓમાં ન ફસાવું અને ધર્મ કર્તવ્યનું પાલન કરવું છે. શુદ્ધ ધનથી શુદ્ધ આહાર, શુદ્ધ આહારથી શુદ્ધ વિચારો અને શુદ્ધ વિચારોથી ધર્મ માટે યોગ્યતા પ્રાપ્ત થાય છે.',
+                'ways-title': '<i data-feather="git-branch" class="w-6 h-6 mr-3"></i>કમાણીના ૭ રસ્તા',
+                'ways-items': [
+                    { icon: 'briefcase', title: 'બિઝનેસ', desc: 'વેપારીઓ દ્વારા' },
+                    { icon: 'award', title: 'જ્ઞાન', desc: 'ડોક્ટર, વકીલ' },
+                    { icon: 'leaf', title: 'ખેતી', desc: 'ખેડૂતો દ્વારા' },
+                    { icon: 'gitlab', title: 'પશુપાલન', desc: 'ગોવાળો દ્વારા' },
+                    { icon: 'pen-tool', title: 'શિલ્પ', desc: 'કારીગરો દ્વારા' },
+                    { icon: 'user-check', title: 'નોકરી', desc: 'સેવા કે જોબ' },
+                    { icon: 'heart', title: 'ભિક્ષા', desc: 'સંયમીઓ માટે' }
+                ],
+                'interactive-title': 'જ્ઞાનને વ્યવહારમાં મૂકો',
+                'interactive-subtitle': 'વિઝ્યુઅલ પ્રસ્તુતિઓ અને ક્વિઝ દ્વારા તમારી સમજને વધુ મજબૂત બનાવો.',
+                'infographics-title': 'ઇન્ફોગ્રાફિક્સ',
+                'infographics-desc': 'મુખ્ય સિદ્ધાંતોની એક સુંદર અને દ્રશ્ય પ્રસ્તુતિ.',
+                'view-now-btn': 'હમણાં જુઓ',
+                'quiz-title': 'જ્ઞાન ચકાસણી ક્વિઝ',
+                'quiz-desc': 'આ વિષય પર તમારી સમજને ચકાસો અને જ્ઞાનને પાકું કરો.',
+                'start-quiz-btn': 'ક્વિઝ શરૂ કરો',
+                'footer-name': 'મનીષ વી. શાહ',
+                'footer-contact': 'વોટ્સએપ: 94299 26447 (વડોદરા)'
+            },
+            'en': {
+                'header-title': 'Pure Earnings, Pure Life',
+                'header-subtitle': 'Exploring the principles of ethical business and a righteous lifestyle according to Jainism.',
+                'video-title': 'Videos & Podcasts',
+                'video-subtitle': 'Get more in-depth information on this topic.',
+                'video1-title': 'Podcast: Pure Earnings, Pure Life',
+                'video1-desc': 'An in-depth discussion on the principles of ethical business.',
+                'video-watch-btn': 'Watch Now',
+                'video2-title': 'Business According to Jainism',
+                'video2-desc': 'Are all ways of earning appropriate? A guiding analysis on this question.',
+                'video-watch-btn2': 'Watch Now',
+                'principles-title': 'Core Principles of Ethical Earning',
+                'principles-subtitle': 'Understanding the pure earning system shown by the Lord.',
+                'purpose-title': '<i data-feather="target" class="w-6 h-6 mr-3"></i>The Purpose of Pure Earnings',
+                'purpose-text': 'The purpose of pure earning is to avoid sin, not get trapped in financial problems, and to follow religious duties. Pure wealth leads to a pure diet, a pure diet to pure thoughts, and pure thoughts qualify one for dharma.',
+                'ways-title': '<i data-feather="git-branch" class="w-6 h-6 mr-3"></i>The 7 Ways to Earn',
+                'ways-items': [
+                    { icon: 'briefcase', title: 'Business', desc: 'By merchants' },
+                    { icon: 'award', title: 'Knowledge', desc: 'Doctors, lawyers' },
+                    { icon: 'leaf', title: 'Agriculture', desc: 'By farmers' },
+                    { icon: 'gitlab', title: 'Animal Husbandry', desc: 'By herdsmen' },
+                    { icon: 'pen-tool', title: 'Craftsmanship', desc: 'By artisans' },
+                    { icon: 'user-check', title: 'Job/Service', desc: 'Service for others' },
+                    { icon: 'heart', title: 'Alms', desc: 'For ascetics' }
+                ],
+                'interactive-title': 'Apply Knowledge into Practice',
+                'interactive-subtitle': 'Strengthen your understanding through visual presentations and quizzes.',
+                'infographics-title': 'Infographics',
+                'infographics-desc': 'A beautiful and visual presentation of the core principles.',
+                'view-now-btn': 'View Now',
+                'quiz-title': 'Knowledge Check Quiz',
+                'quiz-desc': 'Test your understanding of this subject and solidify your knowledge.',
+                'start-quiz-btn': 'Start Quiz',
+                'footer-name': 'Manish V. Shah',
+                'footer-contact': 'WhatsApp: 94299 26447 (Vadodara)'
+            }
+        };
+
+        const btnGu = document.getElementById('btn-gu');
+        const btnEn = document.getElementById('btn-en');
+        const waysGrid = document.getElementById('ways-grid');
+
+        function changeLanguage(lang) {
+            // Update all text elements based on their ID
+            for (const id in content[lang]) {
+                const element = document.getElementById(id);
+                if (element && id !== 'ways-items') {
+                    // Add font class for Gujarati
+                    if (lang === 'gu' && (id.includes('title') || id.includes('name'))) {
+                        element.classList.add('font-gu');
+                    } else {
+                        element.classList.remove('font-gu');
+                    }
+                    element.innerHTML = content[lang][id];
+                }
+            }
+
+            // Populate the 7 ways grid
+            waysGrid.innerHTML = '';
+            content[lang]['ways-items'].forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'bg-gray-100 p-4 rounded-lg';
+                div.innerHTML = `
+                    <i data-feather="${item.icon}" class="w-8 h-8 mx-auto text-blue-600"></i>
+                    <h4 class="font-bold mt-2 ${lang === 'gu' ? 'font-gu' : ''}">${item.title}</h4>
+                    <p class="text-xs text-gray-500 ${lang === 'gu' ? 'font-gu' : ''}">${item.desc}</p>
+                `;
+                waysGrid.appendChild(div);
+            });
+
+            // Update button styles
+            if (lang === 'gu') {
+                btnGu.classList.add('active');
+                btnEn.classList.remove('active');
+                document.documentElement.lang = 'gu';
+            } else {
+                btnEn.classList.add('active');
+                btnGu.classList.remove('active');
+                document.documentElement.lang = 'en';
+            }
+            
+            // Re-apply feather icons
+            feather.replace();
+        }
+
+        // Event listeners for language buttons
+        btnGu.addEventListener('click', () => changeLanguage('gu'));
+        btnEn.addEventListener('click', () => changeLanguage('en'));
+
+        // Initial load
+        window.onload = () => {
+            changeLanguage('gu'); // Set default language to Gujarati
+        };
+    </script>
+</body>
+</html>

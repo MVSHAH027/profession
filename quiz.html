@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Ethics Quiz (વ્યવસાય ક્વિઝ)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Hind+Vadodara:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gujarati-font {
+            font-family: 'Hind Vadodara', sans-serif;
+        }
+        .correct-answer {
+            background-color: #d1fae5; /* green-100 */
+            border-color: #10b981; /* green-500 */
+        }
+        .wrong-answer {
+            background-color: #fee2e2; /* red-100 */
+            border-color: #ef4444; /* red-500 */
+        }
+        .selected-wrong {
+            background-color: #fca5a5; /* red-300 */
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div class="container mx-auto p-4 max-w-2xl">
+        
+        <!-- Header -->
+        <header class="text-center mb-6">
+            <h1 id="main-title" class="text-3xl font-bold text-gray-800 gujarati-font">વ્યવસાય ક્વિઝ</h1>
+            <p id="main-subtitle" class="text-md text-gray-500 mt-1 gujarati-font">તમારી સમજ ચકાસો</p>
+        </header>
+
+        <!-- Language Selector -->
+        <div class="flex justify-center mb-8 space-x-4">
+            <button id="lang-gu" class="gujarati-font px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75 ring-2 ring-indigo-700">ગુજરાતી</button>
+            <button id="lang-en" class="px-6 py-2 bg-white text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-75">English</button>
+        </div>
+
+        <!-- Quiz Container -->
+        <div id="quiz-container" class="space-y-6">
+            <!-- Questions will be dynamically inserted here -->
+        </div>
+
+    </div>
+
+    <script>
+        const quizData = [
+            // Chapter Questions
+            {
+                id: 1,
+                type: 'chapter',
+                question_gu: "સંયમના જણાવ્યા મુજબ, પૈસા કમાવવાના કેટલા રસ્તા છે?",
+                options_gu: ["5", "7", "10", "3"],
+                correct_answer_index: 1,
+                explanation_gu: "સાચો જવાબ 7 છે. પાઠમાં જણાવ્યા મુજબ, કમાણીના 7 રસ્તા છે: બિઝનેસ, નોલેજ, એગ્રીકલ્ચર, પશુપાલન, શિલ્પ, નોકરી અને ભિક્ષા.",
+                question_en: "According to Sanyam, how many ways are there to earn money?",
+                options_en: ["5", "7", "10", "3"],
+                explanation_en: "The correct answer is 7. As mentioned in the chapter, there are 7 ways to earn: Business, Knowledge, Agriculture, Animal Husbandry, Craftsmanship, Job, and Begging."
+            },
+            {
+                id: 2,
+                type: 'chapter',
+                question_gu: "પાઠ મુજબ કયો ધંધો પંચેન્દ્રિય જીવોની મહાહિંસાને કારણે ન કરવો જોઈએ?",
+                options_gu: ["કપડાંની દુકાન", "ફેક્ટરી અને કન્સ્ટ્રક્શન", "શિક્ષક", "એકાઉન્ટન્ટ"],
+                correct_answer_index: 1,
+                explanation_gu: "ફેક્ટરી અને કન્સ્ટ્રક્શનના કામમાં મશીનરીના ઉપયોગથી અનેક ત્રસ જીવો અને સ્થાવર જીવોની હિંસા થાય છે, તેથી તે ટાળવું જોઈએ.",
+                question_en: "According to the chapter, which business should be avoided due to significant violence towards five-sensed beings?",
+                options_en: ["Clothing Store", "Factory and Construction", "Teacher", "Accountant"],
+                explanation_en: "Factory and construction work involves machinery that causes violence to many mobile and immobile beings, so it should be avoided."
+            },
+            {
+                id: 3,
+                type: 'chapter',
+                question_gu: "તેલની મિલનો ધંધો શા માટે પાપપૂર્ણ માનવામાં આવે છે?",
+                options_gu: ["તેમાં ખૂબ વીજળી વપરાય છે", "તેલમાં રહેલા જીવો પીલાઈ જાય છે", "તે ખૂબ ઘોંઘાટ કરે છે", "તેમાં નફો ઓછો છે"],
+                correct_answer_index: 1,
+                explanation_gu: "તેલની મિલમાં તેલીબિયાં (જેમ કે કપાસિયા) સાથે લાખો જીવાતો પણ પીલાઈ જાય છે, જેનાથી ભયંકર હિંસા થાય છે.",
+                question_en: "Why is the business of an oil mill considered sinful?",
+                options_en: ["It uses a lot of electricity", "Creatures within the oilseeds get crushed", "It is very noisy", "The profit is low"],
+                explanation_en: "In an oil mill, millions of small creatures present in the oilseeds (like cottonseed) get crushed, causing immense violence."
+            },
+            {
+                id: 4,
+                type: 'chapter',
+                question_gu: "પાઠ મુજબ ડોક્ટર અને વકીલ જેવા વ્યવસાયમાં શું માનસિક જોખમ રહેલું છે?",
+                options_gu: ["વધુ પડતો અભ્યાસ કરવો પડે છે", "બીજાઓનું ખરાબ ઈચ્છવાની વૃત્તિ થાય છે", "પગાર ઓછો મળે છે", "કામના કલાકો વધુ હોય છે"],
+                correct_answer_index: 1,
+                explanation_gu: "આવા વ્યવસાયમાં વ્યક્તિ 'લોકો બીમાર પડે' અથવા 'કેસ લંબાય' તેવું ઈચ્છી શકે છે, જે મનની ગંદકી બનીને પાપ બંધાવે છે.",
+                question_en: "According to the text, what is the mental risk in professions like doctors and lawyers?",
+                options_en: ["Having to study too much", "A tendency to wish ill upon others", "The salary is low", "Working hours are long"],
+                explanation_en: "In such professions, a person might wish for 'people to get sick' or for a 'case to be prolonged', which pollutes the mind and leads to sin."
+            },
+            {
+                id: 5,
+                type: 'chapter',
+                question_gu: "વિવેકી વ્યક્તિ માટે કયા બે વિકલ્પો ઉચિત નથી ગણાયા?",
+                options_gu: ["વેપાર અને નોકરી", "શિલ્પ અને ભિક્ષા", "ખેતી અને પશુપાલન", "ડોક્ટર અને વકીલ"],
+                correct_answer_index: 2,
+                explanation_gu: "ખેતી અને પશુપાલનમાં અનેક જીવોની હિંસા સંકળાયેલી હોવાથી, તેને વિવેકી વ્યક્તિ માટે ઉચિત ગણવામાં આવતા નથી.",
+                question_en: "Which two options are considered not suitable for a discerning person?",
+                options_en: ["Business and Job", "Craftsmanship and Begging", "Farming and Animal Husbandry", "Doctor and Lawyer"],
+                explanation_en: "Farming and animal husbandry involve violence towards many beings and are therefore not considered suitable for a discerning person."
+            },
+            {
+                id: 6,
+                type: 'chapter',
+                question_gu: "પાઠમાં 'નોકરી' શબ્દનો અર્થ શું સમજાવ્યો છે?",
+                options_gu: ["સેવા કરવી", "નો કરાય તે", "પૈસા કમાવવા", "ઉચ્ચ પદ"],
+                correct_answer_index: 1,
+                explanation_gu: "નોકરીનો અર્થ 'નો કરાય' તેવો કરાયો છે, કારણ કે તેમાં વ્યક્તિ નોકર બનીને બીજા પર નિર્ભર રહે છે અને પોતાની સ્વતંત્રતા ગુમાવે છે.",
+                question_en: "What is the meaning of the word 'Nokari' (job) explained in the text?",
+                options_en: ["To serve", "That which should not be done", "To earn money", "A high position"],
+                explanation_en: "The meaning of 'Nokari' is interpreted as 'that which should not be done' because it makes a person a servant, dependent on others, and loses their freedom."
+            },
+            {
+                id: 7,
+                type: 'chapter',
+                question_gu: "કોઈ પણ સંજોગોમાં કઈ નોકરી ટાળવી જોઈએ?",
+                options_gu: ["શિક્ષકની", "બેંકની", "જેલર કે પોલીસની", "દુકાનદારની"],
+                correct_answer_index: 2,
+                explanation_gu: "જેલર કે પોલીસ જેવી નોકરી કરવાથી હૃદયમાંથી દયાભાવ જતો રહે છે અને વ્યક્તિ નિષ્ઠુર બની જાય છે, તેથી તે ટાળવી જોઈએ.",
+                question_en: "Which job should be avoided under any circumstances?",
+                options_en: ["Teacher", "Banker", "Jailer or Police", "Shopkeeper"],
+                explanation_en: "Jobs like a jailer or police officer can diminish compassion in one's heart and make a person cruel, hence they should be avoided."
+            },
+            {
+                id: 8,
+                type: 'chapter',
+                question_gu: "મલ્ટીનેશનલ કંપનીની નોકરી વિશે પાઠમાં શું કહેવાયું છે?",
+                options_gu: ["તે ખૂબ સારી અને આકર્ષક છે", "તેમાં માણસનું શોષણ થાય છે", "તેમાં ખૂબ આઝાદી મળે છે", "તે ધર્મ કરવા માટે શ્રેષ્ઠ છે"],
+                correct_answer_index: 1,
+                explanation_gu: "MNCની થિયરી 'એક માણસ, ડબલ સેલરી, ટ્રિપલ વર્ક' જેવી હોય છે, જેમાં માણસનું શોષણ થાય છે અને જીવન બરબાદ થાય છે.",
+                question_en: "What is said in the chapter about jobs in multinational companies (MNCs)?",
+                options_en: ["They are very good and attractive", "They exploit people", "They offer a lot of freedom", "They are best for practicing religion"],
+                explanation_en: "The theory of MNCs is described as 'one person, double salary, triple work,' where people are exploited and their lives are ruined."
+            },
+            {
+                id: 9,
+                type: 'chapter',
+                question_gu: "ભિક્ષા માંગવાનો અધિકાર કોને છે?",
+                options_gu: ["કોઈપણ ગરીબ વ્યક્તિને", "જેને નોકરી ન મળે તેને", "સંસારત્યાગી સંયમી મહાત્માઓને", "જેને વેપારમાં નુકસાન થયું હોય તેને"],
+                correct_answer_index: 2,
+                explanation_gu: "ભિક્ષા ફક્ત સંસારનો ત્યાગ કરનાર સંયમી મહાત્માઓ માટે જ ઉચિત છે. સામાન્ય માણસ માટે તે લઘુતા લાવનારું છે.",
+                question_en: "Who is entitled to ask for alms (Bhiksha)?",
+                options_en: ["Any poor person", "Anyone who can't find a job", "Renunciant saints and monks", "Someone who incurred a loss in business"],
+                explanation_en: "Begging is considered appropriate only for renunciant saints who have left worldly life. For an ordinary person, it is demeaning."
+            },
+            {
+                id: 10,
+                type: 'chapter',
+                question_gu: "કોની સાથે વેપાર કરવાનું ટાળવું જોઈએ?",
+                options_gu: ["સામાન્ય સજ્જન લોકો સાથે", "મિત્રો સાથે", "રાજા કે સરકારી અધિકારી સાથે", "પરિવાર સાથે"],
+                correct_answer_index: 2,
+                explanation_gu: "રાજા, સરકારી અધિકારી, વિપ્ર કે હથિયારધારી સાથે વેપાર કરવાથી સમસ્યાઓ ઊભી થઈ શકે છે, તેથી તે ટાળવું જોઈએ.",
+                question_en: "With whom should one avoid doing business?",
+                options_en: ["With ordinary gentlemen", "With friends", "With a king or government official", "With family"],
+                explanation_en: "Doing business with kings, government officials, priests, or armed individuals can lead to problems and should be avoided."
+            },
+            {
+                id: 11,
+                type: 'chapter',
+                question_gu: "ઉધાર માલ આપીને વેપાર કરવા વિશે શું સલાહ આપવામાં આવી છે?",
+                options_gu: ["તેનાથી વધુ નફો થાય છે", "તે કદી ન કરવો જોઈએ કારણ કે ચિંતા થાય છે", "ફક્ત વિશ્વાસુ લોકોને જ ઉધાર આપવું", "તે વેપાર વધારવાનો સારો રસ્તો છે"],
+                correct_answer_index: 1,
+                explanation_gu: "ઉધારથી વેપાર ન કરવો જોઈએ કારણ કે તેનાથી પૈસા પાછા મળશે કે નહીં તેની ચિંતા અને દુર્ધ્યાન થાય છે.",
+                question_en: "What advice is given about doing business by selling goods on credit?",
+                options_en: ["It leads to more profit", "It should never be done as it causes worry", "Give credit only to trustworthy people", "It is a good way to grow business"],
+                explanation_en: "One should not do business on credit because it leads to worry and negative thoughts about whether the money will be returned."
+            },
+            {
+                id: 12,
+                type: 'chapter',
+                question_gu: "સુખનું મૂળ શું છે?",
+                options_gu: ["પૈસા", "સંતોષ", "સત્તા", "પ્રસિદ્ધિ"],
+                correct_answer_index: 1,
+                explanation_gu: "ભગવાને કહ્યું છે કે સુખનું મૂળ સંતોષ છે. લોભી માણસ સુખ-શાંતિ ગુમાવી દે છે.",
+                question_en: "What is the root of happiness?",
+                options_en: ["Money", "Contentment", "Power", "Fame"],
+                explanation_en: "The Lord has said that the root of happiness is contentment. A greedy person loses peace and happiness."
+            },
+            {
+                id: 13,
+                type: 'chapter',
+                question_gu: "સંયમ મુજબ, સાચું ધન (real money) શું છે?",
+                options_gu: ["સોનું અને ચાંદી", "મકાન અને જમીન", "સમ્યગ્દર્શન, સમ્યજ્ઞાન અને સમ્યગ્ચારિત્ર", "મોટી બેંક બેલેન્સ"],
+                correct_answer_index: 2,
+                explanation_gu: "સાચું ધન તો આત્મિક ગુણો છે: સમ્યગ્દર્શન (સાચી શ્રદ્ધા), સમ્યજ્ઞાન (સાચું જ્ઞાન) અને સમ્યગ્ચારિત્ર (સાચું આચરણ).",
+                question_en: "According to Sanyam, what is the 'real money'?",
+                options_en: ["Gold and silver", "House and land", "Right Faith, Right Knowledge, and Right Conduct", "A large bank balance"],
+                explanation_en: "The real wealth is spiritual qualities: Right Faith (Samyagdarshan), Right Knowledge (Samyagjnan), and Right Conduct (Samyagcharitra)."
+            },
+            {
+                id: 14,
+                type: 'chapter',
+                question_gu: "શુદ્ધ કમાણી શા માટે જરૂરી છે?",
+                options_gu: ["વધુ ટેક્સ બચાવવા", "સમાજમાં માન વધારવા", "શુદ્ધ કમાણીથી શુદ્ધ ભોજન અને તેથી ધર્મમાં યોગ્યતા આવે છે", "તેનાથી જલ્દી અમીર બની શકાય છે"],
+                correct_answer_index: 2,
+                explanation_gu: "શુદ્ધ કમાણીથી ઘરમાં શુદ્ધ પૈસો આવે, તેનાથી ભોજન શુદ્ધ થાય, અને શુદ્ધ ભોજનથી વ્યક્તિ ધર્મ કરવા માટે યોગ્ય બને છે.",
+                question_en: "Why is a pure earning system important?",
+                options_en: ["To save more tax", "To increase respect in society", "Pure earnings lead to pure food, which qualifies one for dharma", "One can get rich quickly with it"],
+                explanation_en: "A pure earning system brings pure money home, which leads to pure food, and pure food makes a person qualified to practice religion (dharma)."
+            },
+            {
+                id: 15,
+                type: 'chapter',
+                question_gu: "પાઠ મુજબ, આત્મહત્યા કરતાં પણ વધુ ખતરનાક શું છે?",
+                options_gu: ["ગરીબી", "બીમારી", "એવો વ્યવસાય જેમાં ચારિત્ર્યનું જોખમ હોય", "નિષ્ફળતા"],
+                correct_answer_index: 2,
+                explanation_gu: "જે વ્યવસાયમાં વ્યક્તિના ચારિત્ર્ય પર જોખમ હોય, તે આત્મહત્યા કરતાં પણ વધુ ખતરનાક છે કારણ કે તે આત્માનું અહિત કરે છે.",
+                question_en: "According to the text, what is more dangerous than suicide?",
+                options_en: ["Poverty", "Sickness", "A profession that poses a risk to one's character", "Failure"],
+                explanation_en: "A profession that poses a risk to one's character is more dangerous than suicide because it harms the soul."
+            },
+            // Scenario Questions
+            {
+                id: 16,
+                type: 'scenario',
+                question_gu: "તમારો મિત્ર ફાસ્ટ-ફેશન કપડાંની ફેક્ટરી શરૂ કરવા માંગે છે, જેમાં ઘણો કચરો અને પ્રદુષણ થાય છે. તમે તેને શું સલાહ આપશો?",
+                options_gu: ["તેને પ્રોત્સાહન આપશો", "તેને પર્યાવરણને ઓછું નુકસાન થાય તેવો વિકલ્પ વિચારવા કહેશો", "તેની સાથે ભાગીદારી કરશો", "કંઈ નહીં કહો"],
+                correct_answer_index: 1,
+                explanation_gu: "પાઠ મુજબ, મહાહિંસા અને પ્રદુષણ ફેલાવતા ધંધાથી દૂર રહેવું જોઈએ. મિત્રને નૈતિક અને પર્યાવરણને અનુકૂળ વિકલ્પ સૂચવવો એ યોગ્ય છે.",
+                question_en: "Your friend wants to start a fast-fashion clothing factory, which creates a lot of waste and pollution. What would you advise them?",
+                options_en: ["Encourage them", "Ask them to consider a less environmentally harmful alternative", "Partner with them", "Say nothing"],
+                explanation_en: "According to the chapter, one should stay away from businesses that cause great harm and pollution. Suggesting an ethical and eco-friendly alternative is the right approach."
+            },
+            {
+                id: 17,
+                type: 'scenario',
+                question_gu: "તમે એક ડોક્ટર છો. એક ગરીબ દર્દી સારવાર માટે આવે છે જેની પાસે પૂરતા પૈસા નથી. તમારે શું કરવું જોઈએ?",
+                options_gu: ["પૈસા વગર સારવાર કરવાનો ઇનકાર કરવો", "તેમની પાસેથી ઓછા પૈસા લેવા અથવા મફત સારવાર કરવી", "તેમને બીજા મોંઘા ડોક્ટર પાસે મોકલવા", "તેમની પરિસ્થિતિની અવગણના કરવી"],
+                correct_answer_index: 1,
+                explanation_gu: "પાઠમાં જીવાનંદ વૈદનું ઉદાહરણ છે, જેમણે વૈયાવચ્ચથી પુણ્ય કમાયું. જરૂરિયાતમંદની સેવા કરવી એ એક ઉમદા કાર્ય છે.",
+                question_en: "You are a doctor. A poor patient who cannot afford the fees comes for treatment. What should you do?",
+                options_en: ["Refuse treatment without money", "Charge them less or treat them for free", "Send them to another expensive doctor", "Ignore their situation"],
+                explanation_en: "The chapter gives the example of Jivanand Vaid, who earned merit through service. Serving the needy is a noble act."
+            },
+            {
+                id: 18,
+                type: 'scenario',
+                question_gu: "તમને એક મોટી કંપનીમાં ખૂબ ઊંચા પગારની નોકરી મળે છે, પરંતુ તેમાં રોજના 14 કલાક કામ કરવું પડે છે, જેનાથી પરિવાર કે ધર્મ માટે સમય નથી મળતો. તમારે શું કરવું જોઈએ?",
+                options_gu: ["નોકરી સ્વીકારી લેવી", "ઓછા પગારવાળી પણ સંતુલિત જીવનશૈલીવાળી નોકરી શોધવી", "કંપની પાસે ઓછા કલાક કામ કરવાની માંગ કરવી", "આ વિશે વિચાર ન કરવો"],
+                correct_answer_index: 1,
+                explanation_gu: "પાઠ મુજબ, MNC જેવી નોકરીઓ જીવનને બરબાદ કરી દે છે. પૈસા કરતાં જીવનમાં સંતુલન અને શાંતિ વધુ મહત્વપૂર્ણ છે.",
+                question_en: "You get a high-paying job in a big company, but it requires working 14 hours a day, leaving no time for family or spiritual practices. What should you do?",
+                options_en: ["Accept the job", "Look for a job with a lower salary but a balanced lifestyle", "Demand fewer working hours from the company", "Not think about it"],
+                explanation_en: "As per the text, jobs like those in MNCs can ruin one's life. Balance and peace are more important than just money."
+            },
+            {
+                id: 19,
+                type: 'scenario',
+                question_gu: "એક સંબંધી શેરબજારમાં રોકાણ કરવા માટે તમારી પાસે મોટી રકમ ઉધાર માંગે છે. તમારે શું કરવું જોઈએ?",
+                options_gu: ["તરત જ પૈસા આપી દેવા", "સટ્ટા જેવા કામ માટે ઉધાર આપવાનો નમ્રતાપૂર્વક ઇનકાર કરવો", "વધુ વ્યાજ પર પૈસા આપવા", "તેમને બીજા કોઈ પાસેથી લેવા કહેવું"],
+                correct_answer_index: 1,
+                explanation_gu: "પાઠમાં કહ્યું છે કે સટ્ટાના રવાડે ચડવાથી સુખ-શાંતિ અને પૈસા બંને જાય છે. આવા કામ માટે ઉધાર આપવું એ ખોટું છે.",
+                question_en: "A relative asks you for a large loan to invest in the stock market based on a 'hot tip'. What should you do?",
+                options_en: ["Give the money immediately", "Politely refuse to lend for speculative activities", "Lend the money at a high interest rate", "Tell them to borrow from someone else"],
+                explanation_en: "The text states that engaging in speculation destroys both peace and money. It is wrong to lend money for such activities."
+            },
+            {
+                id: 20,
+                type: 'scenario',
+                question_gu: "તમારો કરિયાણાનો ધંધો ધીમો ચાલી રહ્યો છે. કોઈ તમને નફો વધારવા માટે ચામડાની વસ્તુઓ વેચવાનું સૂચન કરે છે. તમારો નિર્ણય શું હશે?",
+                options_gu: ["સૂચન માની લેશો", "હિંસાથી બનેલી વસ્તુઓ વેચવાનો સ્પષ્ટ ઇનકાર કરશો", "ગુપ્ત રીતે વેચવાનું શરૂ કરશો", "બીજા કોઈને વેચવા માટે રાખશો"],
+                correct_answer_index: 1,
+                explanation_gu: "ચામડું એ પ્રાણીજ બનાવટ (એનિમલ પ્રોડક્ટ) છે. પાઠ મુજબ, જેમાં પ્રાણીઓની હિંસા થતી હોય તેવો વેપાર ન કરવો જોઈએ.",
+                question_en: "Your grocery business is slow. Someone suggests you start selling leather goods to increase profit. What will be your decision?",
+                options_en: ["Accept the suggestion", "Clearly refuse to sell products made from violence", "Start selling them secretly", "Hire someone else to sell them"],
+                explanation_en: "Leather is an animal product. According to the text, one should not engage in trade that involves violence towards animals."
+            },
+            {
+                id: 21,
+                type: 'scenario',
+                question_gu: "તમે એક પ્રતિભાશાળી કલાકાર છો. તમને હિંસાને પ્રોત્સાહન આપતું ચિત્ર બનાવવા માટે મોટો ઓર્ડર મળે છે. શું તમે સ્વીકારશો?",
+                options_gu: ["હા, કારણ કે પૈસા સારા મળે છે", "ના, કારણ કે તે નકારાત્મકતા ફેલાવે છે", "ચિત્ર બનાવીને નામ નહીં આપો", "ઓર્ડર બીજા કલાકારને આપી દેશો"],
+                correct_answer_index: 1,
+                explanation_gu: "શિલ્પ (કળા) નો ઉપયોગ સારા કાર્યો માટે થવો જોઈએ. હિંસા કે નકારાત્મકતાને પ્રોત્સાહન આપવું એ નૈતિક રીતે ખોટું છે.",
+                question_en: "You are a talented artist. You get a large commission to create a painting that promotes violence. Do you accept?",
+                options_en: ["Yes, because the money is good", "No, because it promotes negativity", "Make the painting but don't sign it", "Pass the order to another artist"],
+                explanation_en: "Craftsmanship (art) should be used for good purposes. Promoting violence or negativity is ethically wrong."
+            },
+            {
+                id: 22,
+                type: 'scenario',
+                question_gu: "તમે નોકરી ગુમાવી દીધી છે અને આર્થિક રીતે સંઘર્ષ કરી રહ્યા છો. કોઈ મિત્ર તમને મંદિર બહાર ભીખ માંગીને સહેલાઈથી પૈસા કમાવવાનું સૂચન કરે છે. તમે શું કરશો?",
+                options_gu: ["તેની સલાહ માનશો", "ભીખ માંગવાને બદલે મહેનતથી કોઈ નાનું કામ શોધવાનો પ્રયત્ન કરશો", "થોડા દિવસ માટે પ્રયત્ન કરી જોશો", "મિત્ર પર ગુસ્સે થશો"],
+                correct_answer_index: 1,
+                explanation_gu: "પાઠ મુજબ, ભિક્ષા માંગવાથી સ્વમાન ગુમાવાય છે. ગમે તેવી મુશ્કેલીમાં પણ પ્રયત્ન કરવો જોઈએ, પણ હાથ ન લંબાવવો જોઈએ.",
+                question_en: "You have lost your job and are struggling financially. A friend suggests you can earn easy money by begging outside a temple. What do you do?",
+                options_en: ["Follow their advice", "Try to find some small work through effort instead of begging", "Try it for a few days", "Get angry at the friend"],
+                explanation_en: "According to the text, begging leads to a loss of self-respect. One should make an effort even in difficult times, but should not beg."
+            },
+            {
+                id: 23,
+                type: 'scenario',
+                question_gu: "તમે એક એકાઉન્ટન્ટ છો. તમને દારૂ બનાવતી કંપનીનું એકાઉન્ટ સંભાળવા માટે મોટી ઓફર મળે છે. તમારે શું કરવું જોઈએ?",
+                options_gu: ["ઓફર સ્વીકારી લેવી", "આવી હિંસક અને અનૈતિક કંપની સાથે કામ કરવાનો ઇનકાર કરવો", "પગાર વધારવાની માંગ કરવી", "બીજાને કામ પર રાખી દેવું"],
+                correct_answer_index: 1,
+                explanation_gu: "પાઠમાં સ્પષ્ટ કહ્યું છે કે કોઈ હિંસક ધંધાનું એકાઉન્ટ કરીએ તો આપણે પણ તે પાપના ભાગીદાર બનીએ છીએ.",
+                question_en: "You are an accountant. You receive a big offer to handle the accounts of an alcohol manufacturing company. What should you do?",
+                options_en: ["Accept the offer", "Refuse to work with such a violent and unethical company", "Demand a higher salary", "Hire someone else to do the work"],
+                explanation_en: "The text clearly states that if we handle accounts for a violent business, we also become partners in that sin."
+            },
+            {
+                id: 24,
+                type: 'scenario',
+                question_gu: "તમે એક દુકાનદાર છો. એક માથાભારે વ્યક્તિ તમારી પાસેથી ઉધારમાં સામાન માંગે છે. તમારે શું કરવું જોઈએ?",
+                options_gu: ["ડરીને ઉધાર આપી દેવો", "નમ્રતાપૂર્વક પણ મક્કમતાથી ઉધાર આપવાની ના પાડવી", "તેને અડધી કિંમતે સામાન આપવો", "પોલીસને બોલાવવી"],
+                correct_answer_index: 1,
+                explanation_gu: "પાઠમાં સલાહ છે કે માથાભારે વ્યક્તિને ઉધાર ન આપવું જોઈએ, કારણ કે તેનાથી મૂડી પણ ગુમાવવી પડે છે.",
+                question_en: "You are a shopkeeper. An intimidating person demands goods from you on credit. What should you do?",
+                options_en: ["Give credit out of fear", "Politely but firmly refuse to give credit", "Give the goods at half price", "Call the police"],
+                explanation_en: "The advice in the text is not to give credit to intimidating people, as it can lead to losing the principal amount itself."
+            },
+            {
+                id: 25,
+                type: 'scenario',
+                question_gu: "તમે એક ખેડૂત છો અને તમારી જમીનમાં પાણી ઓછું છે. કોઈ તમને ભૂગર્ભજળનો વધુ પડતો ઉપયોગ કરીને પાણી-આધારિત પાક ઉગાડવાની સલાહ આપે છે. તમારે શું કરવું જોઈએ?",
+                options_gu: ["સલાહ માનીને વધુ પાણી વાપરવું", "પાણીનો વિવેકપૂર્ણ ઉપયોગ કરવો અને ઓછા પાણીવાળા પાક ઉગાડવા", "સરકાર પાસેથી મદદ માંગવી", "ખેતી છોડી દેવી"],
+                correct_answer_index: 1,
+                explanation_gu: "ખેતીમાં દયાભાવ રાખવો જરૂરી છે. કુદરતી સંસાધનોનો વધુ પડતો ઉપયોગ એ પણ એક પ્રકારની હિંસા છે અને તે લાંબા ગાળે નુકસાનકારક છે.",
+                question_en: "You are a farmer with limited water on your land. Someone advises you to grow water-intensive crops by over-extracting groundwater. What should you do?",
+                options_en: ["Follow the advice and use more water", "Use water judiciously and grow crops that require less water", "Ask for help from the government", "Quit farming"],
+                explanation_en: "It is important to have compassion in farming. Overusing natural resources is also a form of violence and is harmful in the long run."
+            },
+             {
+                id: 26,
+                type: 'scenario',
+                question_gu: "તમે એક સોફ્ટવેર ડેવલપર છો. તમને એક ગેમિંગ એપ બનાવવાનું કામ મળે છે જે બાળકોને વ્યસની બનાવી શકે છે. તમારે શું કરવું જોઈએ?",
+                options_gu: ["પ્રોજેક્ટ લઈ લેવો કારણ કે તે ટેકનિકલ કામ છે", "આવા પ્રોજેક્ટનો ઇનકાર કરવો જે સમાજ પર નકારાત્મક અસર કરે", "ગેમમાં સારા સંદેશા ઉમેરવા", "વધુ પૈસા માંગવા"],
+                correct_answer_index: 1,
+                explanation_gu: "કોઈપણ કાર્ય, ભલે તે જ્ઞાન આધારિત હોય, જો તેની સમાજ પર ખરાબ અસર થતી હોય તો તે નૈતિક રીતે યોગ્ય નથી.",
+                question_en: "You are a software developer. You get a project to create a gaming app that could be highly addictive for children. What should you do?",
+                options_en: ["Take the project as it's just technical work", "Refuse a project that has a negative impact on society", "Add good messages in the game", "Ask for more money"],
+                explanation_en: "Any work, even if it's knowledge-based, is not ethically right if it has a negative impact on society."
+            },
+            {
+                id: 27,
+                type: 'scenario',
+                question_gu: "તમે એક રેસ્ટોરન્ટના માલિક છો. ખર્ચ બચાવવા માટે, તમે ગ્રાહકોને જાણ કર્યા વિના હલકી ગુણવત્તાવાળી સામગ્રીનો ઉપયોગ કરી શકો છો. શું તમે તે કરશો?",
+                options_gu: ["હા, નફો વધારવા માટે", "ના, કારણ કે તે અપ્રામાણિકતા અને ગ્રાહકોના સ્વાસ્થ્ય સાથે ચેડાં છે", "ફક્ત અમુક વાનગીઓમાં જ કરશો", "કર્મચારીઓને નિર્ણય લેવા દેશો"],
+                correct_answer_index: 1,
+                explanation_gu: "પ્રામાણિકતા એ ધનનું મૂળ છે. ગ્રાહકોને છેતરવું અને તેમના સ્વાસ્થ્યને જોખમમાં મૂકવું એ પાપપૂર્ણ કૃત્ય છે.",
+                question_en: "You own a restaurant. To save costs, you could use lower-quality ingredients without customers knowing. Would you do it?",
+                options_en: ["Yes, to increase profit", "No, because it is dishonest and compromises customer health", "Only in some dishes", "Let the staff decide"],
+                explanation_en: "Honesty is the root of wealth. Deceiving customers and risking their health is a sinful act."
+            },
+            {
+                id: 28,
+                type: 'scenario',
+                question_gu: "તમારી પાસે જીવન જરૂરિયાત પૂરતા પૈસા છે. તમને એક નવા, તણાવપૂર્ણ વ્યવસાયની તક મળે છે જે તમને ખૂબ ધનવાન બનાવી શકે છે. સંતોષનો સિદ્ધાંત શું સૂચવે છે?",
+                options_gu: ["તક ઝડપી લેવી, કારણ કે પૈસા મહત્વપૂર્ણ છે", "વધુ લોભ ટાળીને શાંતિ અને સંતોષપૂર્ણ જીવન પસંદ કરવું", "કોઈ બીજાને તે વ્યવસાય કરવા માટે રોકાણ કરવું", "ભાગીદારીમાં વ્યવસાય કરવો"],
+                correct_answer_index: 1,
+                explanation_gu: "પાઠ મુજબ, સુખનું મૂળ સંતોષ છે. વધુ પડતી ઈચ્છાઓ ડાઉનફોલ તરફ દોરી જાય છે. જો જરૂરિયાતો પૂરી થતી હોય, તો શાંતિ પસંદ કરવી વધુ સારું છે.",
+                question_en: "You have enough money for your basic needs. An opportunity for a new, stressful business arises that could make you very rich. What does the principle of contentment suggest?",
+                options_en: ["Seize the opportunity, as money is important", "Choose a life of peace and contentment, avoiding excessive greed", "Invest for someone else to do the business", "Do the business in partnership"],
+                explanation_en: "According to the text, the root of happiness is contentment. Excessive desires lead to a downfall. If needs are met, choosing peace is better."
+            },
+            {
+                id: 29,
+                type: 'scenario',
+                question_gu: "એક શક્તિશાળી સરકારી અધિકારી તમને મોટો કોન્ટ્રાક્ટ આપવાની ઓફર કરે છે, પરંતુ તે બદલામાં 'કટ' (લાંચ) માંગે છે. સાચો રસ્તો શું છે?",
+                options_gu: ["લાંચ આપીને કોન્ટ્રાક્ટ લઈ લેવો", "અપ્રામાણિક માર્ગે કોન્ટ્રાક્ટ મેળવવાનો ઇનકાર કરવો", "વાટાઘાટો કરીને લાંચની રકમ ઓછી કરવી", "કોઈ વચેટિયા દ્વારા કામ કરાવવું"],
+                correct_answer_index: 1,
+                explanation_gu: "પાઠ મુજબ, સરકારી અધિકારીઓ સાથે વેપાર કરવાનું ટાળવું જોઈએ અને પ્રામાણિકતા જાળવવી જોઈએ. લાંચ આપવી અને લેવી એ પાપ છે.",
+                question_en: "A powerful government official offers you a big contract but hints they want a 'cut' (bribe) in return. What is the right course of action?",
+                options_en: ["Take the contract by paying the bribe", "Refuse to acquire the contract through dishonest means", "Negotiate to lower the bribe amount", "Use a middleman to get the work done"],
+                explanation_en: "As per the text, one should avoid business with government officials and maintain honesty. Giving and taking bribes is a sin."
+            },
+            {
+                id: 30,
+                type: 'scenario',
+                question_gu: "તમે તમારી દુકાનમાં નોકરી માટે કોઈને રાખવા માંગો છો. એક ઉમેદવાર ખૂબ કુશળ છે પણ અપ્રામાણિક લાગે છે. બીજો ઓછો કુશળ છે પણ ખૂબ જ પ્રામાણિક છે. તમે કોને પસંદ કરશો?",
+                options_gu: ["કુશળ પણ અપ્રામાણિક ઉમેદવારને", "પ્રામાણિક ઉમેદવારને, ભલે તેને તાલીમ આપવી પડે", "બંનેને નકારશો", "બંનેને અજમાયશ પર રાખશો"],
+                correct_answer_index: 1,
+                explanation_gu: "ધનનું મૂળ પ્રામાણિકતા છે. એક પ્રામાણિક કર્મચારી લાંબા ગાળે વ્યવસાય માટે વધુ ફાયદાકારક છે, ભલે શરૂઆતમાં તેને શીખવવું પડે.",
+                question_en: "You want to hire someone for your shop. One candidate is highly skilled but seems dishonest. Another is less skilled but very honest. Whom would you choose?",
+                options_en: ["The skilled but dishonest candidate", "The honest candidate, even if they need training", "Reject both", "Hire both on a trial basis"],
+                explanation_en: "The root of wealth is honesty. An honest employee is more beneficial for the business in the long run, even if they need to be trained initially."
+            }
+        ];
+
+        let currentLanguage = 'gu';
+        let shuffledQuestions = [];
+
+        const quizContainer = document.getElementById('quiz-container');
+        const mainTitle = document.getElementById('main-title');
+        const mainSubtitle = document.getElementById('main-subtitle');
+        const langGuBtn = document.getElementById('lang-gu');
+        const langEnBtn = document.getElementById('lang-en');
+
+        function shuffleArray(array) {
+            return array.sort(() => Math.random() - 0.5);
+        }
+
+        function renderQuiz() {
+            quizContainer.innerHTML = '';
+            shuffledQuestions.forEach((q, index) => {
+                const questionText = q[`question_${currentLanguage}`];
+                const options = q[`options_${currentLanguage}`];
+
+                const questionElement = document.createElement('div');
+                questionElement.className = 'bg-white p-5 rounded-xl shadow-sm border border-gray-200';
+                questionElement.innerHTML = `
+                    <p class="text-lg font-semibold text-gray-800 mb-4 ${currentLanguage === 'gu' ? 'gujarati-font' : ''}">
+                        <span class="text-indigo-600 font-bold">${index + 1}.</span> ${questionText}
+                    </p>
+                    <div id="options-${q.id}" class="grid grid-cols-1 gap-3">
+                        ${options.map((option, i) => `
+                            <button data-question-id="${q.id}" data-option-index="${i}" class="option-btn w-full text-left p-3 border-2 border-gray-300 rounded-lg hover:bg-gray-100 hover:border-indigo-400 transition-colors duration-200 ${currentLanguage === 'gu' ? 'gujarati-font' : ''}">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="feedback-${q.id}" class="mt-4 hidden"></div>
+                `;
+                quizContainer.appendChild(questionElement);
+            });
+
+            document.querySelectorAll('.option-btn').forEach(button => {
+                button.addEventListener('click', handleAnswer);
+            });
+        }
+
+        function handleAnswer(event) {
+            const selectedButton = event.currentTarget;
+            const questionId = parseInt(selectedButton.dataset.questionId);
+            const selectedOptionIndex = parseInt(selectedButton.dataset.optionIndex);
+
+            const question = quizData.find(q => q.id === questionId);
+            const isCorrect = selectedOptionIndex === question.correct_answer_index;
+
+            const feedbackDiv = document.getElementById(`feedback-${questionId}`);
+            const optionsContainer = document.getElementById(`options-${questionId}`);
+            
+            const explanation = question[`explanation_${currentLanguage}`];
+            const correctText = currentLanguage === 'gu' ? 'સાચો જવાબ' : 'Correct';
+            const wrongText = currentLanguage === 'gu' ? 'ખોટો જવાબ' : 'Wrong';
+
+            if (isCorrect) {
+                selectedButton.classList.add('correct-answer');
+                feedbackDiv.innerHTML = `
+                    <p class="text-green-700 font-bold ${currentLanguage === 'gu' ? 'gujarati-font' : ''}">${correctText}!</p>
+                    <p class="text-gray-600 mt-1 ${currentLanguage === 'gu' ? 'gujarati-font' : ''}">${explanation}</p>
+                `;
+            } else {
+                selectedButton.classList.add('selected-wrong');
+                feedbackDiv.innerHTML = `
+                    <p class="text-red-700 font-bold ${currentLanguage === 'gu' ? 'gujarati-font' : ''}">${wrongText}.</p>
+                    <p class="text-gray-600 mt-1 ${currentLanguage === 'gu' ? 'gujarati-font' : ''}">${explanation}</p>
+                `;
+                // Highlight the correct answer
+                optionsContainer.children[question.correct_answer_index].classList.add('correct-answer');
+            }
+
+            feedbackDiv.classList.remove('hidden');
+
+            // Disable all buttons for this question
+            Array.from(optionsContainer.children).forEach(btn => {
+                btn.disabled = true;
+                btn.classList.remove('hover:bg-gray-100', 'hover:border-indigo-400');
+            });
+        }
+
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update UI text
+            mainTitle.textContent = lang === 'gu' ? 'વ્યવસાય ક્વિઝ' : 'Business Ethics Quiz';
+            mainSubtitle.textContent = lang === 'gu' ? 'તમારી સમજ ચકાસો' : 'Test your understanding';
+            mainTitle.classList.toggle('gujarati-font', lang === 'gu');
+            mainSubtitle.classList.toggle('gujarati-font', lang === 'gu');
+
+            // Update button styles
+            if (lang === 'gu') {
+                langGuBtn.classList.remove('bg-white', 'text-gray-700');
+                langGuBtn.classList.add('bg-indigo-600', 'text-white', 'ring-2', 'ring-indigo-700');
+                langEnBtn.classList.remove('bg-indigo-600', 'text-white', 'ring-2', 'ring-indigo-700');
+                langEnBtn.classList.add('bg-white', 'text-gray-700');
+            } else {
+                langEnBtn.classList.remove('bg-white', 'text-gray-700');
+                langEnBtn.classList.add('bg-indigo-600', 'text-white', 'ring-2', 'ring-indigo-700');
+                langGuBtn.classList.remove('bg-indigo-600', 'text-white', 'ring-2', 'ring-indigo-700');
+                langGuBtn.classList.add('bg-white', 'text-gray-700');
+            }
+
+            renderQuiz();
+        }
+
+        langGuBtn.addEventListener('click', () => setLanguage('gu'));
+        langEnBtn.addEventListener('click', () => setLanguage('en'));
+
+        // Initial Load
+        window.addEventListener('load', () => {
+            shuffledQuestions = shuffleArray([...quizData]);
+            setLanguage('gu');
+        });
+
+    </script>
+</body>
+</html>
